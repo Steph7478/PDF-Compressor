@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF komprimieren</title>
+  </head>
+
+  <body>
+    <h1>PDF-Datei komprimieren</h1>
+    <form id="pdfForm" enctype="multipart/form-data" method="POST">
+      <label for="file">PDF-Datei:</label>
+      <input type="file" name="file" accept=".pdf" required /><br /><br />
+
+      <button type="submit">PDF komprimieren</button>
+    </form>
+
+    <p id="response"></p>
+
+    <script th:nonce="${cspNonce}">
+      const form = document.getElementById("pdfForm");
+      const responseText = document.getElementById("response");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch("/compress", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            const blob = await response.blob();
+
+            const disposition = response.headers.get("Content-Disposition");
+            let filename = "komprimiertes_pdf.pdf";
+
+            if (disposition && disposition.indexOf("filename=") !== -1) {
+              const filenameMatch = disposition.match(/filename="(.+)"/);
+              if (filenameMatch.length === 2) filename = filenameMatch[1];
+            }
+
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+
+            responseText.textContent = "Download gestartet: " + filename;
+          } else {
+            responseText.textContent = `Fehler: ${response.status}`;
+          }
+        } catch (error) {
+          responseText.textContent = `Fehler beim Senden der Anfrage: ${error.message}`;
+        }
+      });
+    </script>
+  </body>
+</html>
