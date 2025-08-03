@@ -1,14 +1,13 @@
-package com.PdfCompressorApp.presentation.controller;
+package com.PdfCompressorApp.presentation.controllers;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.PdfCompressorApp.application.service.PdfCompressorService;
-import com.PdfCompressorApp.domain.model.UploadedFile;
-
-import com.PdfCompressorApp.application.service.PdfValidator;
+import com.PdfCompressorApp.application.services.PdfCompressorService;
+import com.PdfCompressorApp.infrastructure.validators.PdfValidator;
+import com.PdfCompressorApp.domain.entities.UploadedFile;
 
 import java.io.File;
 

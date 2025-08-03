@@ -1,4 +1,4 @@
-package com.PdfCompressorApp.domain.model;
+package com.PdfCompressorApp.domain.entities;
 
 import java.io.File;
 

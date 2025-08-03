@@ -1,9 +1,9 @@
-package com.PdfCompressorApp.application.service;
+package com.PdfCompressorApp.application.services;
 
 import org.springframework.stereotype.Service;
 
-import com.PdfCompressorApp.domain.model.UploadedFile;
-import com.PdfCompressorApp.domain.repository.PdfCompressorRepository;
+import com.PdfCompressorApp.domain.entities.UploadedFile;
+import com.PdfCompressorApp.domain.repositories.PdfCompressorRepository;
 
 import java.io.File;
 

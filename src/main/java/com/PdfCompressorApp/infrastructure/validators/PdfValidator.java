@@ -1,4 +1,4 @@
-package com.PdfCompressorApp.application.service;
+package com.PdfCompressorApp.infrastructure.validators;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

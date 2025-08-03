@@ -1,9 +1,9 @@
-package com.PdfCompressorApp.infrastructure.repository;
+package com.PdfCompressorApp.infrastructure.repositories;
 
 import org.springframework.stereotype.Repository;
 
-import com.PdfCompressorApp.domain.model.UploadedFile;
-import com.PdfCompressorApp.domain.repository.PdfCompressorRepository;
+import com.PdfCompressorApp.domain.entities.UploadedFile;
+import com.PdfCompressorApp.domain.repositories.PdfCompressorRepository;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfWriter;
